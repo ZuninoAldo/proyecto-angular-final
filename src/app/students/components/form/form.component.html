@@ -1,0 +1,28 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Carreras</mat-label>
+            <mat-select formControlName="career">
+                <mat-option value="FrontEnd">Front End</mat-option>
+                <mat-option value="BackEnd">Back End</mat-option>
+                <mat-option value="FullStack">Full Stack</mat-option>
+                <mat-option value="CiberSecurity">Ciber Seguridad</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-flat-button type="submit">Enviar</button>
+    </div>
+
+</form>

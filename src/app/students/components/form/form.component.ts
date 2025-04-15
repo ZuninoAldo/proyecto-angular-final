@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 
+
 @Component({
   selector: 'students-form',
   standalone: false,
@@ -34,6 +35,5 @@ submit() {
   console.log(student);
   this.formGroup.reset();
 }
-
 
 }

@@ -8,13 +8,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
+import { AlumnosRegistroComponent } from './components/alumnos-registro/alumnos-registro.component';
 
 
 
 @NgModule({
   declarations: [
     FormComponent,
-    TableComponent
+    TableComponent,
+    AlumnosRegistroComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     MatTableModule,
     SharedModule,
+    AlumnosRegistroComponent
   ],
 
 })

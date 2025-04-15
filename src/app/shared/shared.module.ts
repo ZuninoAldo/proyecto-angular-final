@@ -10,11 +10,16 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import { FullNamePipe } from './pipes/fullName/full-name.pipe';
+import { TitlesDirective } from './directives/titles.directive';
+
 
 
 
 @NgModule({
-  declarations: [ ],
+  declarations: [ 
+    FullNamePipe, TitlesDirective
+  ],
   imports: [
     CommonModule,
     MatSidenavModule, 
@@ -36,7 +41,9 @@ import {MatListModule} from '@angular/material/list';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    FullNamePipe,
+    TitlesDirective
   ]
 })
 export class SharedModule { }

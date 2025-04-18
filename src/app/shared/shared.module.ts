@@ -10,8 +10,8 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
-import { FullNamePipe } from './pipes/fullName/full-name.pipe';
-import { TitlesDirective } from './directives/titles.directive';
+import { FullNamePipe } from '../Core/pipes/fullName/full-name.pipe';
+import { TitlesDirective } from '../../app/Core/directives/titles.directive'; 
 
 
 

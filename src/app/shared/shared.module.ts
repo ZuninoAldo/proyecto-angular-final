@@ -11,14 +11,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import { FullNamePipe } from '../Core/pipes/fullName/full-name.pipe';
-import { TitlesDirective } from '../../app/Core/directives/titles.directive'; 
+import { TitlesDirective } from '../Core/directives/titles.directive'; 
+import { StudentsService } from '../Core/services/students.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 
 
 
 @NgModule({
   declarations: [ 
-    FullNamePipe, TitlesDirective
+    FullNamePipe, TitlesDirective, SidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,7 @@ import { TitlesDirective } from '../../app/Core/directives/titles.directive';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [
     MatSidenavModule, 
@@ -43,7 +46,9 @@ import { TitlesDirective } from '../../app/Core/directives/titles.directive';
     MatSelectModule,
     MatListModule,
     FullNamePipe,
-    TitlesDirective
-  ]
+    TitlesDirective,
+  ],
+
+  providers: [StudentsService],
 })
 export class SharedModule { }

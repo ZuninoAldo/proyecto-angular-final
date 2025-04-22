@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Student } from '../../interfaces/students';
+import { StudentsService } from '../../../../Core/services/students.service';
 
 @Component({
   selector: 'students-table',
@@ -7,7 +8,7 @@ import { Student } from '../../interfaces/students';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   displayedColumns: string[] = [
     'name',
     'lastName',
@@ -17,10 +18,13 @@ export class TableComponent {
 
   dataSource: Student[] = [];
 
-  students: Student[] = [];
-
-  constructor() {
-    this.dataSource = this.students;
-  }
+  constructor(private studentsService: StudentsService) { }
+  
+  ngOnInit(): void {
+    this.studentsService.getStudentsObs();
+    this.studentsService.students$.subscribe((data) => {
+      this.dataSource = data;
+    });
+}
 
 }

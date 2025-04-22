@@ -8,8 +8,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 
-import { AlumnosRegistroComponent } from './components/alumnos-registro/alumnos-registro.component';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../Shared/shared.module';
+import { StudentsService } from '../../Core/services/students.service';
 
 
 
@@ -17,7 +17,6 @@ import { SharedModule } from '../../shared/shared.module';
   declarations: [
     FormComponent,
     TableComponent,
-    AlumnosRegistroComponent
   ],
   imports: [
     CommonModule,
@@ -39,8 +38,9 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     MatTableModule,
     SharedModule,
-    AlumnosRegistroComponent
   ],
+
+  providers: [StudentsService],
 
 })
 export class StudentsModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { from, Observable } from 'rxjs';
 
 
 @Component({
@@ -9,4 +10,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   showFiller = false;
+
+  users!: Observable<any[]>;
+
+  constructor() {
+
+    this.users = from(fetch('https://jsonplaceholder.typicode.com/users/').then((res => res.json()
+    )
+  )
+); 
+
+  }
 }

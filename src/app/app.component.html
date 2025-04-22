@@ -17,10 +17,23 @@
             <span> Academia Virtual </span>
             <span class="example-spacer"></span>
         </mat-toolbar>
-        <!-- <students-form></students-form>
-        <students-table></students-table> -->
-        <app-alumnos-registro></app-alumnos-registro>
+        <students-form></students-form>
+        <students-table class="table-students"></students-table>
 
-        
+        <div>
+            <h2 class="title-lista">Lista de alumnos resgistrados hasta el momento</h2>
+            <pre>
+                <ng-container *ngFor="let user of (users | async)">
+                    <ul class="list-group">
+                        <li>Nombre: {{ user.name }}</li>
+                        <li>Usuario: {{ user.username }}</li>
+                        <li>Sitio Web Personal: {{ user.website }}</li>
+                        <li>Email: {{ user.email }}</li>
+                        <li>Teléfono: {{ user.phone }}</li>
+                    </ul>
+                </ng-container>
+            </pre>
+        </div>
     </div>
+
 </mat-drawer-container>

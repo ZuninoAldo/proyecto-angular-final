@@ -5,14 +5,41 @@
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="name">
         </mat-form-field>
+            <div *ngIf="isNameInvalid">
+                <div *ngIf="name ?.hasError('required')">
+                    <small class="text-danger">El nombre es requerido</small>
+                </div>
+                <div *ngIf="name ?.hasError('minlength')">
+                    <small class="text-danger">El nombre debe tener al menos 3 caracteres</small>
+                </div>
+            </div>
+
         <mat-form-field class="example-full-width">
             <mat-label>Apellido</mat-label>
             <input matInput formControlName="lastName">
         </mat-form-field>
+        <div *ngIf="islastNameInvalid">
+            <div *ngIf="lastName ?.hasError('required')">
+                <small class="text-danger">El apellido es requerido</small>
+            </div>
+            <div *ngIf="lastName ?.hasError('minlength')">
+                <small class="text-danger">El apellido debe tener al menos 2 caracteres</small>
+            </div>
+        </div>
+
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email">
         </mat-form-field>
+        <div *ngIf="isEmailInvalid">
+            <div *ngIf="email ?.hasError('required')">
+                <small class="text-danger">El correo es requerido</small>
+            </div>
+            <div *ngIf="email ?.hasError('email')">
+                <small class="text-danger">Debes ingresar un correo valido</small>
+            </div>
+        </div>
+
         <mat-form-field>
             <mat-label>Carreras</mat-label>
             <mat-select formControlName="career">
@@ -22,6 +49,12 @@
                 <mat-option value="CiberSecurity">Ciber Seguridad</mat-option>
             </mat-select>
         </mat-form-field>
+        <div *ngIf="isCareerInvalid">
+            <div *ngIf="career ?.hasError('required')">
+                <small class="text-danger">Debes seleccionar una carrera</small>
+            </div>
+        </div>
+
         <button mat-flat-button type="submit">Enviar</button>
     </div>
 

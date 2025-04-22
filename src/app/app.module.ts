@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudentsModule } from '../app/Features/students/students.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './Shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

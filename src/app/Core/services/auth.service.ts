@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { User } from '../../Features/auth/interfaces/User';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  authUser: User | null = null;
 
   constructor() { }
 
@@ -14,6 +16,11 @@ export class AuthService {
       (email !== 'emiliano@perez.com' || password !== 'emiliano')) {
       return false;
     }
+
+    this.authUser = {
+      email,
+      role: 'admin',
+    };
     return true;
   }
 }

@@ -16,7 +16,7 @@ loginForm: FormGroup;
 constructor(
   private fb: FormBuilder,
   private router: Router,
-  private AuthService: AuthService,) {
+  private AuthService: AuthService) {
   this.loginForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required, Validators.minLength(4)]],
@@ -28,6 +28,7 @@ submit() {
     const { email, password } = this.loginForm.value;
 
     const isLoggedIn = this.AuthService.login(email, password);
+
     if (!isLoggedIn) {
       alert('Usuario o contraseña incorrectos');
       return;

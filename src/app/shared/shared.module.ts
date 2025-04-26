@@ -14,6 +14,8 @@ import { FullNamePipe } from '../Core/pipes/fullName/full-name.pipe';
 import { TitlesDirective } from '../Core/directives/titles.directive'; 
 import { StudentsService } from '../Core/services/students.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -34,6 +36,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatInputModule,
     MatSelectModule,
     MatListModule,
+    MatCardModule,
+    RouterModule,
   ],
   exports: [
     MatSidenavModule, 
@@ -47,6 +51,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatListModule,
     FullNamePipe,
     TitlesDirective,
+    MatCardModule,
+    RouterModule,
   ],
 
   providers: [StudentsService],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Student } from '../../Features/students/interfaces/students';
+import { Student } from '../../Features/dashboard/students/interfaces/students';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -37,6 +37,8 @@ export class StudentsService {
     this._students = [...this._students, student];
     this.dataSubject.next(this._students);
   }
+
+  
 
   constructor() { }
 }

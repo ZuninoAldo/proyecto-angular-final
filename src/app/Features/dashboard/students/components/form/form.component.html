@@ -43,10 +43,11 @@
         <mat-form-field>
             <mat-label>Carreras</mat-label>
             <mat-select formControlName="career">
-                <mat-option value="FrontEnd">Front End</mat-option>
-                <mat-option value="BackEnd">Back End</mat-option>
-                <mat-option value="FullStack">Full Stack</mat-option>
-                <mat-option value="CiberSecurity">Ciber Seguridad</mat-option>
+                <mat-option 
+                *ngFor="let career of careerNames" 
+                [value]="career.toLowerCase()">
+                {{ career }}
+                </mat-option>
             </mat-select>
         </mat-form-field>
         <div *ngIf="isCareerInvalid">
@@ -55,7 +56,7 @@
             </div>
         </div>
 
-        <button mat-flat-button type="submit">Enviar</button>
+        <button mat-flat-button type="submit">Agregar Alumno</button>
     </div>
 
 </form>

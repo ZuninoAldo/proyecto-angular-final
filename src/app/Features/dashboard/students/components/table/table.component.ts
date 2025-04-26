@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../../interfaces/students';
-import { StudentsService } from '../../../../Core/services/students.service';
+import { StudentsService } from '../../../../../Core/services/students.service';
 
 @Component({
   selector: 'students-table',
@@ -14,11 +14,14 @@ export class TableComponent implements OnInit {
     'lastName',
     'email',
     'career',
+    'acctions',
   ];
 
   dataSource: Student[] = [];
 
-  constructor(private studentsService: StudentsService) { }
+  constructor(
+    private studentsService: StudentsService,
+  ) { }
   
   ngOnInit(): void {
     this.studentsService.getStudentsObs();

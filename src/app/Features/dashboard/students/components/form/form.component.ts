@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentsService } from '../../../../Core/services/students.service';
+import { StudentsService } from '../../../../../Core/services/students.service';
+import { CareersService } from '../../../../../Core/services/careers.service';
 
 
 @Component({
@@ -12,10 +13,12 @@ import { StudentsService } from '../../../../Core/services/students.service';
 export class FormComponent {
 
   formGroup: FormGroup;
+  careerNames!: string [];
 
   constructor(
     private fb: FormBuilder,
     private StudentsService: StudentsService,
+    private CareersService: CareersService,
   ) {
     this.formGroup = this.fb.group({
       name: ['', [Validators.minLength(3), Validators.required]],
@@ -23,7 +26,12 @@ export class FormComponent {
       email: ['', [Validators.email, Validators.required]],
       career: ['', [Validators.required]],
     })
+    this.CareersService.getCareersTitles();
+    this.CareersService.careersTitles$.subscribe((titles) => {
+      this.careerNames = titles;
+    })
   }
+
 
 
   submit() {

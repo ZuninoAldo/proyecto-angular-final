@@ -8,8 +8,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 
-import { SharedModule } from '../../Shared/shared.module';
-import { StudentsService } from '../../Core/services/students.service';
+import { SharedModule } from '../../../Shared/shared.module';
+import { StudentsService } from '../../../Core/services/students.service';
+import { StudentsComponent } from './students.component';
+
 
 
 
@@ -17,6 +19,8 @@ import { StudentsService } from '../../Core/services/students.service';
   declarations: [
     FormComponent,
     TableComponent,
+    StudentsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -29,8 +33,6 @@ import { StudentsService } from '../../Core/services/students.service';
     SharedModule,
   ],
   exports: [
-    FormComponent,
-    TableComponent,
     FormsModule, 
     MatFormFieldModule, 
     MatInputModule,
@@ -38,6 +40,7 @@ import { StudentsService } from '../../Core/services/students.service';
     ReactiveFormsModule,
     MatTableModule,
     SharedModule,
+    StudentsComponent,
   ],
 
   providers: [StudentsService],

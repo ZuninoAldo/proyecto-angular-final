@@ -1,0 +1,33 @@
+<form [formGroup]="formGroupCareer" (ngSubmit)="submit()">
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Carrera</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+        <div *ngIf="isTitleInvalid">
+            <div *ngIf="title ?.hasError('required')">
+                <small class="text-danger">El Titulo de la carrera es requerido</small>
+            </div>
+            <div *ngIf="title ?.hasError('minlength')">
+                <small class="text-danger">El Titulo debe tener al menos 3 caracteres</small>
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="description">
+        </mat-form-field>
+        <div *ngIf="isDescriptionInvalid">
+            <div *ngIf="description ?.hasError('required')">
+                <small class="text-danger">La Descripción es requerida</small>
+            </div>
+            <div *ngIf="description ?.hasError('minlength')">
+                <small class="text-danger">La Descripción debe tener al menos 10 caracteres</small>
+            </div>
+        </div>
+
+        <button mat-flat-button type="submit">Agregar Carrera</button>
+    </div>
+
+</form>

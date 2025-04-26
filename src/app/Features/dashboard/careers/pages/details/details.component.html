@@ -1,0 +1,20 @@
+<a routerLink="/careers" mat-button>Volver a Carreras</a>
+
+@if (isLoading) {
+    <p>Obteniendo datos...</p>
+} @else if (!isLoading && career){
+    <div class="card-container">
+        <mat-card class="card-complete" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title class="card-title">{{ career.title }}:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-text">
+                <p>{{ career.description }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+} @else {
+    <p>{{ error }}</p>
+}
+
+<a routerLink="/students" mat-button>Volver a Alumnos</a>

@@ -11,14 +11,6 @@ import { from, Observable } from 'rxjs';
 export class AppComponent {
   showFiller = false;
 
-  users!: Observable<any[]>;
+  constructor() { }
 
-  constructor() {
-
-    this.users = from(fetch('https://jsonplaceholder.typicode.com/users/').then((res => res.json()
-    )
-  )
-); 
-
-  }
 }

@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentsService } from '../../../../../Core/services/students.service';
 import { CareersService } from '../../../../../Core/services/careers.service';
 
+import { v4 as uuidv4 } from 'uuid';
+import { Student } from '../../interfaces/students';
+
 
 @Component({
   selector: 'students-form',
@@ -13,7 +16,8 @@ import { CareersService } from '../../../../../Core/services/careers.service';
 export class FormComponent {
 
   formGroup: FormGroup;
-  careerNames!: string [];
+  careerNames!: string[];
+  isStudentEdit: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -21,31 +25,51 @@ export class FormComponent {
     private CareersService: CareersService,
   ) {
     this.formGroup = this.fb.group({
+      id: [''],
       name: ['', [Validators.minLength(3), Validators.required]],
       lastName: ['', [Validators.minLength(2), Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       career: ['', [Validators.required]],
     })
-    this.CareersService.getCareersTitles();
+    this.CareersService.getCareers();
     this.CareersService.careersTitles$.subscribe((titles) => {
       this.careerNames = titles;
-    })
+    });
+    this.StudentsService.studentEdit$.subscribe((student) => {
+      if (student) {
+        this.formGroup.patchValue({
+          id: student.id,
+          name: student.name,
+          lastName: student.lastName,
+          email: student.email,
+          career: student.career,
+        });
+        this.isStudentEdit = true;
+      }
+    });
   }
 
 
 
   submit() {
-
-    const student = {
+    const isEdit = this.isStudentEdit;
+    const student: Student = {
+      id: isEdit ? this.formGroup.value.id : uuidv4(),
       name: this.formGroup.value.name,
       lastName: this.formGroup.value.lastName,
       email: this.formGroup.value.email,
       career: this.formGroup.value.career,
-    }
-    console.log(student);
-    this.StudentsService.addStudentObs(this.formGroup.value);
-    this.formGroup.reset();
+    };
 
+    if (isEdit) {
+      this.StudentsService.updateStudent(student);
+    } else {
+      this.StudentsService.addStudentObs(student);
+    }
+
+    this.formGroup.reset();
+    this.isStudentEdit = false;
+    this.StudentsService.studentEdit.next(null);
   }
 
   get name() {

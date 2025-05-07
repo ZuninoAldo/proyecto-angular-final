@@ -10,11 +10,12 @@ import { StudentsService } from '../../../../../Core/services/students.service';
 })
 export class TableComponent implements OnInit {
   displayedColumns: string[] = [
+    'id',
     'name',
     'lastName',
     'email',
     'career',
-    'acctions',
+    'actions',
   ];
 
   dataSource: Student[] = [];
@@ -28,6 +29,14 @@ export class TableComponent implements OnInit {
     this.studentsService.students$.subscribe((data) => {
       this.dataSource = data;
     });
+}
+
+deleteStudent(id: string){
+this.studentsService.deleteStudent(id);
+}
+
+editStudent(id: string){
+  this.studentsService.setUpdateStudent(id);
 }
 
 }

@@ -9,16 +9,29 @@ import { CareersService } from '../../../../../Core/services/careers.service';
   styleUrl: './table-careers.component.scss'
 })
 export class TableCareersComponent implements OnInit {
-  displayedColumns: string [] = ['title', 'description', 'vermas'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'vermas'];
   dataSource2: Career[] = [];
 
-  constructor (private careerService: CareersService) { }
+  constructor(private careerService: CareersService) { }
 
   ngOnInit(): void {
     this.careerService.getCareers();
-    this.careerService.career$.subscribe((data) => {
-      this.dataSource2 = data;
+    this.careerService.career$.subscribe({
+      next: (data) => {
+        this.dataSource2 = data;
+      },
+      error: (error) => {
+        console.error('Error al recibir los datos de las carreras.', error);
+      },
     });
   }
 
+  deleteCareer(id: string) {
+    this.careerService.deleteCareer(id);
   }
+
+  editCareer(id: string) {
+    this.careerService.setUpdateCareer(id);
+  }
+
+}

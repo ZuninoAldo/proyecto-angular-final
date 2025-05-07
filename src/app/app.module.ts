@@ -9,6 +9,7 @@ import { CareersModule } from './Features/dashboard/careers/careers.module';
 import { HomeComponent } from './Features/dashboard/home/home.component';
 import { DashboardModule } from './Features/dashboard/dashboard.module';
 import { AuthModule } from './Features/auth/auth.module';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
 
@@ -29,7 +30,7 @@ import { AuthModule } from './Features/auth/auth.module';
     DashboardModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [provideHttpClient(withFetch())],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

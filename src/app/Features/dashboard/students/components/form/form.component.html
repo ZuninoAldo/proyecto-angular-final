@@ -56,7 +56,9 @@
             </div>
         </div>
 
-        <button mat-flat-button type="submit">Agregar Alumno</button>
+        <button mat-flat-button type="submit">
+            {{ isStudentEdit ? "Editar" : "Agregar" }} Alumno
+        </button>
     </div>
 
 </form>

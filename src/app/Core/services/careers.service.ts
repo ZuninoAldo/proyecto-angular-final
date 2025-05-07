@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Career } from '../../Features/dashboard/careers/interfaces/careers';
 import { BehaviorSubject, Observable, Subscriber } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment.development";
 
-@Injectable ({
+@Injectable({
     providedIn: 'root'
 })
 export class CareersService {
@@ -12,30 +14,48 @@ export class CareersService {
     private careersTitlesSubject = new BehaviorSubject<string[]>([]);
     careersTitles$ = this.careersTitlesSubject.asObservable();
 
-    private _careers: Career[] = [
-        {
-            title: 'FrontEnd',
-            description: 'HTML, CSS, JS y Angular',
-        },
+    careerEdit = new BehaviorSubject<Career | null>(null);
+    careerEdit$ = this.careerEdit.asObservable();
 
-        {
-            title: 'BackEnd',
-            description: 'NodeJS, Express y MongoDB',
-        },
+    constructor(private http: HttpClient) { }
 
-        {
-            title: 'FullStack',
-            description: 'HTML, CSS, JS, Angular, NodeJS, Express y MongoDB',
-        },
+    private _careers: Career[] = [];
 
-        {
-            title: 'Ciberseguridad',
-            description: 'Seguridad en redes, sistemas y aplicaciones',
+    setUpdateCareer(id: string){
+        const career = this._careers.find((career) => career.id === id);
+
+        if(!career){
+            alert('No se encontró la carrera a editar');
+            return
         }
-    ];
+        this.careerEdit.next(career);
+    }
 
-    getCareers(): void {
+    updateCareer(Career: Career) {
+        this.http.put<Career>(`${environment.apiUrl}/careers/${Career.id}`, Career).subscribe({
+            next: (Career) => {
+                this._careers = this._careers.map((c) => 
+                c.id === Career.id ? Career : c);
+                this.dataSubject2.next(this._careers);
+                this.careersTitlesSubject.next(
+                    this._careers.map((Career) => Career.title)
+                );
+                this.careerEdit.next(null);
+            },
+            error: (error) => {
+                console.error('Error al intentar actualizar el curso: ', error);
+            },
+        });
+    }
+
+    getCareers() {
         this.dataSubject2.next(this._careers);
+        this.http.get<Career[]>(`${environment.apiUrl}/careers`)
+            .subscribe((careers) => {
+                this._careers = careers;
+                this.dataSubject2.next(this._careers);
+                this.careersTitlesSubject.next(this._careers.map((career) => career.title));
+            })
     }
 
     getCareersTitles(): void {
@@ -44,10 +64,32 @@ export class CareersService {
     }
 
     addCareer(Career: Career): void {
-        this._careers = [...this._careers, Career];
-        this.dataSubject2.next(this._careers);
-        this.careersTitlesSubject.next(this._careers.map((career) => career.title));
+        this.http.post<Career>(`${environment.apiUrl}/careers`, Career).subscribe({
+            next: (Career) => {
+                this._careers = [...this._careers, Career];
+                this.dataSubject2.next(this._careers);
+                this.careersTitlesSubject.next(this._careers.map((career) => career.title));
+            },
+            error: (error) => {
+                console.error('Error agregando la carrera deseada', error);
+            },
+        });
     }
+
+    deleteCareer(id: string) {
+        this.http.delete<Career>(`${environment.apiUrl}/careers/${id}`).subscribe({
+            next: (career) => {
+                this._careers = this._careers.filter((career) => career.id !== id),
+                    this.dataSubject2.next(this._careers),
+                    this.careersTitlesSubject.next(this._careers.map((career) => career.title)
+                    );
+            },
+            error: (error) => {
+                console.error('Error borrando la carrera', error);
+            },
+        });
+    }
+
 
     getByTitle(title: string) {
         return new Observable<Career>((subscriber) => {
@@ -61,6 +103,4 @@ export class CareersService {
         })
     }
 
-
-constructor() { }
 }

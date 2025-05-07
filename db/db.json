@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "id": "1e7b8c3e-5d4f-4a8e-8c1d-1f2a3b4c5d6e",
+      "email": "admin@admin.com",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "id": "2f8c9d4e-6e5f-4b9f-9d2e-2g3h4i5j6k7l",
+      "email": "sofi@altamirano.com",
+      "password": "sofi",
+      "role": "admin"
+    },
+    {
+      "id": "3g9d0e5f-7f6g-5c0g-0e3f-3h4i5j6k7l8m",
+      "email": "emi@perez.com",
+      "password": "emiliano",
+      "role": "admin"
+    },
+    {
+      "id": "4h0e1f6g-8g7h-6d1h-1f4g-4i5j6k7l8m9n",
+      "email": "aldo@zunino.com",
+      "password": "aldo",
+      "role": "user"
+    },
+    {
+      "id": "5i1f2g7h-9h8i-7e2i-2g5h-5j6k7l8m9n0o",
+      "email": "lucia@dagresti.com",
+      "password": "lucia",
+      "role": "user"
+    }
+  ],
+  "careers": [
+    {
+      "id": "6j2g3h8i-0i9j-8f3j-3h6i-6k7l8m9n0o1p",
+      "title": "FrontEnd",
+      "description": "HTML, CSS, JS y Angular"
+    },
+    {
+      "id": "7k3h4i9j-1j0k-9g4k-4i7j-7l8m9n0o1p2q",
+      "title": "BackEnd",
+      "description": "NodeJS, Express y MongoDB"
+    },
+    {
+      "id": "8l4i5j0k-2k1l-0h5l-5j8k-8m9n0o1p2q3r",
+      "title": "FullStack",
+      "description": "HTML, CSS, JS, Angular, NodeJS, Express y MongoDB"
+    },
+    {
+      "id": "9m5j6k1l-3l2m-1i6m-6k9l-9n0o1p2q3r4s",
+      "title": "Ciberseguridad",
+      "description": "Seguridad en redes, sistemas y aplicaciones"
+    },
+    {
+      "id": "9d561bb1-58c7-4d77-889c-114495c4252d",
+      "title": "Esp en VideoJuegos",
+      "description": "Developer especialista en videojuegos"
+    }
+  ],
+  "students": [
+    {
+      "id": "0n6k7l2m-4m3n-2j7n-7l0m-0o1p2q3r4s5t",
+      "name": "Juan",
+      "lastName": "Perez",
+      "email": "perez.juan@gmail.com",
+      "career": "FrontEnd"
+    },
+    {
+      "id": "1o7l8m3n-5n4o-3k8o-8m1n-1p2q3r4s5t6u",
+      "name": "Camila",
+      "lastName": "Alvarez",
+      "email": "cami.alvarez@gmail.com",
+      "career": "BackEnd"
+    }
+  ]
+}

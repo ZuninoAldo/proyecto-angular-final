@@ -10,6 +10,7 @@ import { HomeComponent } from './Features/dashboard/home/home.component';
 import { DashboardModule } from './Features/dashboard/dashboard.module';
 import { AuthModule } from './Features/auth/auth.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -29,6 +30,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     CareersModule,
     DashboardModule,
     AuthModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [provideHttpClient(withFetch())],
   bootstrap: [AppComponent]

@@ -20,11 +20,11 @@ const routes: Routes = [
       {
         path: 'students',
         component: StudentsComponent,
-        canActivate: [adminGuard],
       },
       {
         path: 'careers',
         component: CareersComponent,
+        canActivate: [adminGuard],
           },
           {
             path: 'careers/:title',

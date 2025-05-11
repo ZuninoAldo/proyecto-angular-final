@@ -3,10 +3,9 @@
         <h3>Menu</h3>
         <mat-list role="list">
             <a mat-list-item routerLink="/dashboard/">Inicio</a>
-            <a mat-list-item routerLink="/dashboard/students"
-            *ngIf="(authUser | async)?.role === 'admin'"
-            >Estudiantes</a>
-            <a mat-list-item routerLink="/dashboard/careers">Carreras</a>
+            <a mat-list-item routerLink="/dashboard/students">Estudiantes</a>
+            <a mat-list-item routerLink="/dashboard/careers"
+            *ngIf="(authUser | async)?.role === 'admin'">Carreras</a>
             <button mat-list-item (click)="logOut()">Cerrar Sesión</button>
         </mat-list>
     </mat-drawer>

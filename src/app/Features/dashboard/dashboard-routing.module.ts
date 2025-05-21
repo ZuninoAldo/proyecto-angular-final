@@ -6,6 +6,7 @@ import { CareersComponent } from './careers/careers.component';
 import { DetailsComponent } from './careers/pages/details/details.component';
 import { DashboardComponent } from './dashboard.component';
 import { adminGuard } from '../../Core/guards/admin.guard';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
       {
         path: 'students',
         component: StudentsComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        canActivate: [adminGuard],
       },
       {
         path: 'careers',

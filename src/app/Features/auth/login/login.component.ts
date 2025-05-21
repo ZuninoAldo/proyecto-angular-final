@@ -11,31 +11,30 @@ import { AuthService } from '../../../Core/services/auth.service';
 })
 export class LoginComponent {
 
-loginForm: FormGroup;
+  loginForm: FormGroup;
 
-constructor(
-  private fb: FormBuilder,
-  private router: Router,
-  private AuthService: AuthService) {
-  this.loginForm = this.fb.group({
-    email: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(4)]],
-  });
-}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private AuthService: AuthService) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+    });
+  }
 
-submit() {
-  if (this.loginForm.valid) {
-    const { email, password } = this.loginForm.value;
+  submit() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
 
-    const isLoggedIn = this.AuthService.login(email, password);
+      this.AuthService.login(email, password).subscribe(isLoggedIn => {
+        if (!isLoggedIn) {
+          alert('Usuario o contraseña incorrectos');
+          return;
+        }
 
-    if (!isLoggedIn) {
-      alert('Usuario o contraseña incorrectos');
-      return;
+        this.router.navigate(['/dashboard']);
+      });
     }
-
-    this.router.navigate(['/dashboard']);
-  } 
-}
-
+  }
 }

@@ -1,34 +1,46 @@
 {
   "users": [
     {
-      "id": "1e7b8c3e-5d4f-4a8e-8c1d-1f2a3b4c5d6e",
-      "email": "admin@admin.com",
-      "password": "admin",
-      "role": "admin"
-    },
-    {
       "id": "2f8c9d4e-6e5f-4b9f-9d2e-2g3h4i5j6k7l",
+      "name": "Sofi",
       "email": "sofi@altamirano.com",
       "password": "sofi",
       "role": "admin"
     },
     {
       "id": "3g9d0e5f-7f6g-5c0g-0e3f-3h4i5j6k7l8m",
+      "name": "Emiliano",
       "email": "emi@perez.com",
       "password": "emiliano",
       "role": "admin"
     },
     {
       "id": "4h0e1f6g-8g7h-6d1h-1f4g-4i5j6k7l8m9n",
+      "name": "Aldo",
       "email": "aldo@zunino.com",
       "password": "aldo",
       "role": "user"
     },
     {
       "id": "5i1f2g7h-9h8i-7e2i-2g5h-5j6k7l8m9n0o",
+      "name": "Lucia",
       "email": "lucia@dagresti.com",
       "password": "lucia",
       "role": "user"
+    },
+    {
+      "id": "5f9c8008-2b38-499a-bc9a-668798558b52",
+      "name": "test",
+      "password": "test",
+      "email": "test@test.com",
+      "role": "admin"
+    },
+    {
+      "id": "91b21c24-1c10-4b96-b49d-cd594aa090a1",
+      "name": "Admin",
+      "password": "admin",
+      "email": "admin@admin.com",
+      "role": "admin"
     }
   ],
   "careers": [

@@ -12,6 +12,8 @@ import { AuthModule } from './Features/auth/auth.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { rootReducer } from './Core/store';
+import { UsersModule } from './Features/dashboard/users/users.module';
 
 
 
@@ -29,9 +31,10 @@ import { EffectsModule } from '@ngrx/effects';
     SharedModule,
     ReactiveFormsModule,
     CareersModule,
+    UsersModule,
     DashboardModule,
     AuthModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(rootReducer, {}),
     EffectsModule.forRoot([]),
   ],
   providers: [provideHttpClient(withFetch())],

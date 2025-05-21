@@ -1,0 +1,64 @@
+<form [formGroup]="formGroupUser" (ngSubmit)="submit()">
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+            <div *ngIf="isNameInvalid">
+                <div *ngIf="name ?.hasError('required')">
+                    <small class="text-danger">El nombre es requerido</small>
+                </div>
+                <div *ngIf="name ?.hasError('minlength')">
+                    <small class="text-danger">El nombre debe tener al menos 3 caracteres</small>
+                </div>
+            </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password">
+        </mat-form-field>
+        <div *ngIf="isPasswordInvalid">
+            <div *ngIf="password ?.hasError('required')">
+                <small class="text-danger">La contraseña es requerida</small>
+            </div>
+            <div *ngIf="password ?.hasError('minlength')">
+                <small class="text-danger">La contraseña debe tener al menos 4 caracteres</small>
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+        <div *ngIf="isEmailInvalid">
+            <div *ngIf="email ?.hasError('required')">
+                <small class="text-danger">El correo es requerido</small>
+            </div>
+            <div *ngIf="email ?.hasError('email')">
+                <small class="text-danger">Debes ingresar un correo valido</small>
+            </div>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="role">
+
+                <mat-option *ngFor="let option of ['admin', 'user']" [value]="option">
+                    {{ option }}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="isRoleInvalid">
+            <div *ngIf="role ?.hasError('required')">
+                <small class="text-danger">Debes seleccionar un rol</small>
+            </div>
+        </div>
+
+        <button mat-flat-button type="submit">
+            {{ isUserEdit ? "Editar" : "Agregar" }} Usuario
+        </button>
+    </div>
+
+</form>

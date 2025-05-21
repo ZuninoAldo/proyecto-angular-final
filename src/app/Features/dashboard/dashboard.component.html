@@ -6,6 +6,8 @@
             <a mat-list-item routerLink="/dashboard/students">Estudiantes</a>
             <a mat-list-item routerLink="/dashboard/careers"
             *ngIf="(authUser | async)?.role === 'admin'">Carreras</a>
+            <a mat-list-item routerLink="/dashboard/users"
+            *ngIf="(authUser | async)?.role === 'admin'">Usuarios</a>
             <button mat-list-item (click)="logOut()">Cerrar Sesión</button>
         </mat-list>
     </mat-drawer>

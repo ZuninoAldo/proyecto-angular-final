@@ -8,10 +8,13 @@ import { RouterModule } from '@angular/router';
 import { CareersModule } from './careers/careers.module';
 import { StudentsModule } from './students/students.module';
 
+import { UsersModule } from './users/users.module';
+
+
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +23,7 @@ import { StudentsModule } from './students/students.module';
     RouterModule,
     CareersModule,
     StudentsModule,
+    UsersModule,
   ],
   exports: [
     SharedModule,

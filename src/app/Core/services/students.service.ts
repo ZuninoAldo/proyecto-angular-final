@@ -3,7 +3,7 @@ import { Student } from '../../Features/dashboard/students/interfaces/students';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { students } from '../../../../../proyecto_angular_1/src/app/components/directives/interfaces/students';
+
 
 @Injectable({
   providedIn: 'root'

@@ -14,6 +14,8 @@ import { DetailsComponent } from './pages/details/details.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     TableCareersComponent,

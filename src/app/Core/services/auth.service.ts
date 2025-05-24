@@ -4,6 +4,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { tap, map, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.development';
+import { Store } from '@ngrx/store';
+import { RootState } from '../store';
+import { setAuthUser, unsetAuthUser } from '../store/auth/auth.actions';
 
 
 @Injectable({
@@ -16,35 +19,7 @@ export class AuthService {
 
   private TOKEN = "1234"
 
-  // private users = [
-  //   {
-  //     email: 'admin@admin.com',
-  //     password: 'admin',
-  //     role: 'admin',
-  //   },
-  //   {
-  //     email: 'sofi@altamirano.com',
-  //     password: 'sofi',
-  //     role: 'admin',
-  //   },
-  //   {
-  //     email: 'emi@perez.com',
-  //     password: 'emiliano',
-  //     role: 'admin',
-  //   },
-  //   {
-  //     email: 'aldo@zunino.com',
-  //     password: 'aldo',
-  //     role: 'user',
-  //   },
-  //   {
-  //     email: 'lucia@dagresti.com',
-  //     password: 'lucia',
-  //     role: 'user',
-  //   }
-  // ]
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store<RootState>) { }
 
   login(email: string, password: string): Observable<boolean> {
     return this.http.get<User[]>(`${environment.apiUrl}/users`).pipe(
@@ -55,6 +30,11 @@ export class AuthService {
         if (!user) {
           return false;
         }
+
+        this.store.dispatch(setAuthUser({
+          payload: user,
+        })
+      );
 
         this._authUser.next(user);
         localStorage.setItem('token', this.TOKEN);
@@ -81,5 +61,7 @@ export class AuthService {
 
   logout() {
     this._authUser.next(null);
+    localStorage.removeItem('token');
+    this.store.dispatch(unsetAuthUser());
   }
 }

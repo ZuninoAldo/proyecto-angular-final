@@ -12,8 +12,10 @@ import { AuthModule } from './Features/auth/auth.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { rootReducer } from './Core/store';
+
 import { UsersModule } from './Features/dashboard/users/users.module';
+import { CareerEffects } from './Features/dashboard/careers/store/career.effects';
+import { rootReducer } from './Core/store/index';
 
 
 
@@ -35,7 +37,7 @@ import { UsersModule } from './Features/dashboard/users/users.module';
     DashboardModule,
     AuthModule,
     StoreModule.forRoot(rootReducer, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([CareerEffects]),
   ],
   providers: [provideHttpClient(withFetch())],
   bootstrap: [AppComponent]

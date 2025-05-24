@@ -30,7 +30,7 @@ describe('LoginComponent', () => {
         };
         component.login(user.email, user.password);
         component.getRole().subscribe(role => {
-            expect(role).toEqual(user);
+            expect(role).toEqual(user.role);
         });
     });
 

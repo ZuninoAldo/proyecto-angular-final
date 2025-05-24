@@ -15,6 +15,7 @@ import { TitlesDirective } from '../Core/directives/titles.directive';
 import { StudentsService } from '../Core/services/students.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatCardModule } from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
 
@@ -37,6 +38,7 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatListModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     RouterModule,
   ],
   exports: [
@@ -52,6 +54,7 @@ import { RouterModule } from '@angular/router';
     FullNamePipe,
     TitlesDirective,
     MatCardModule,
+    MatProgressSpinnerModule,
     RouterModule,
   ],
 

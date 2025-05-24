@@ -1,53 +1,57 @@
 <div class="table-container">
-    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>ID Carrera</th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Titulo</th>
-            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Descripción de los contenidos de la Carrera</th>
-            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="vermas">
-            <th mat-header-cell *matHeaderCellDef>Conocé Más</th>
-            <td mat-cell *matCellDef="let element">
-                <a 
-                mat-icon-button
-                routerLink="/dashboard/careers/{{ element.title.toLowerCase() }}"
-                >
-                    <mat-icon 
-                    aria-hidden="false" 
-                    aria-label="Example home icon" 
-                    fontIcon="visibility"></mat-icon>
-                </a>
-                &nbsp;
-                    <mat-icon 
-                    aria-hidden="false" 
-                    aria-label="Example home icon" 
-                    fontIcon="delete"
-                    (click)="deleteCareer(element.id)"
-                    ></mat-icon>
+    @if (isLoading$ | async) {
+        <mat-spinner></mat-spinner>
+    } @else {
+        <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+    
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID Carrera</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Titulo</th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>Descripción de los contenidos de la Carrera</th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="vermas">
+                <th mat-header-cell *matHeaderCellDef>Conocé Más</th>
+                <td mat-cell *matCellDef="let element">
+                    <a 
+                    mat-icon-button
+                    routerLink="/dashboard/careers/{{ element.title.toLowerCase() }}"
+                    >
+                        <mat-icon 
+                        aria-hidden="false" 
+                        aria-label="Example home icon" 
+                        fontIcon="visibility"></mat-icon>
+                    </a>
                     &nbsp;
-                    &nbsp;
-                    <mat-icon 
-                    aria-hidden="false" 
-                    aria-label="Example home icon" 
-                    fontIcon="edit"
-                    (click)="editCareer(element.id)"
-                    ></mat-icon>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
+                        <mat-icon 
+                        aria-hidden="false" 
+                        aria-label="Example home icon" 
+                        fontIcon="delete"
+                        (click)="deleteCareer(element.id)"
+                        ></mat-icon>
+                        &nbsp;
+                        &nbsp;
+                        <mat-icon 
+                        aria-hidden="false" 
+                        aria-label="Example home icon" 
+                        fontIcon="edit"
+                        (click)="editCareer(element.id)"
+                        ></mat-icon>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        </table>
+    }
 </div>

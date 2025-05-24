@@ -21,10 +21,10 @@ export class CareersService {
 
     private _careers: Career[] = [];
 
-    setUpdateCareer(id: string){
+    setUpdateCareer(id: string) {
         const career = this._careers.find((career) => career.id === id);
 
-        if(!career){
+        if (!career) {
             alert('No se encontró la carrera a editar');
             return
         }
@@ -34,8 +34,8 @@ export class CareersService {
     updateCareer(Career: Career) {
         this.http.put<Career>(`${environment.apiUrl}/careers/${Career.id}`, Career).subscribe({
             next: (Career) => {
-                this._careers = this._careers.map((c) => 
-                c.id === Career.id ? Career : c);
+                this._careers = this._careers.map((c) =>
+                    c.id === Career.id ? Career : c);
                 this.dataSubject2.next(this._careers);
                 this.careersTitlesSubject.next(
                     this._careers.map((Career) => Career.title)
@@ -50,12 +50,7 @@ export class CareersService {
 
     getCareers() {
         this.dataSubject2.next(this._careers);
-        this.http.get<Career[]>(`${environment.apiUrl}/careers`)
-            .subscribe((careers) => {
-                this._careers = careers;
-                this.dataSubject2.next(this._careers);
-                this.careersTitlesSubject.next(this._careers.map((career) => career.title));
-            })
+        return this.http.get<Career[]>(`${environment.apiUrl}/careers`)
     }
 
     getCareersTitles(): void {

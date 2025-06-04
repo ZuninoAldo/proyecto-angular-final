@@ -19,10 +19,13 @@ displayedColumns: string[] = [
 ];
 
 userDataSource: User[] = [];
+currentUserRole: string;
 
 constructor(
   private UsersService: UsersService,
-) { }
+) { 
+  this.currentUserRole = 'admin';
+}
 
 ngOnInit(): void {
   this.UsersService.getUsersObs();

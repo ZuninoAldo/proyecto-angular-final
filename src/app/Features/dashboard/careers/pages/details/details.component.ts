@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CareersService } from '../../../../../Core/services/careers.service';
-import { Observable } from 'rxjs';
 import { Career } from '../../interfaces/careers';
 
 @Component({

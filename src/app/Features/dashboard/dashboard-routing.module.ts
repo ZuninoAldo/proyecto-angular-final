@@ -23,6 +23,10 @@ const routes: Routes = [
         component: StudentsComponent,
       },
       {
+            path: 'student/:id',
+            component: DetailsComponent,
+          },
+      {
         path: 'users',
         component: UsersComponent,
         canActivate: [adminGuard],
@@ -30,19 +34,18 @@ const routes: Routes = [
       {
         path: 'careers',
         component: CareersComponent,
-        canActivate: [adminGuard],
-          },
-          {
-            path: 'careers/:title',
-            component: DetailsComponent,
-          },
+      },
+      {
+        path: 'careers/:title',
+        component: DetailsComponent,
+      },
     ]
   },
-      {
-        path: '**',
-        redirectTo: '',
-      }
-    ]
+  {
+    path: '**',
+    redirectTo: '',
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

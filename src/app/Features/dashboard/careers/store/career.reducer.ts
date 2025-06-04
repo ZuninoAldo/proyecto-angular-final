@@ -21,7 +21,7 @@ export const initialState: careersState = {
 export const reducer = createReducer(
   initialState,
   on(CareerActions.loadCareers, (state) => {
-    console.log('Cargando carreras');
+
 
     return {
       ...state,

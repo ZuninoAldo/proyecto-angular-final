@@ -11,6 +11,8 @@ import {MatTableModule} from '@angular/material/table';
 import { SharedModule } from '../../../Shared/shared.module';
 import { StudentsService } from '../../../Core/services/students.service';
 import { StudentsComponent } from './students.component';
+import { DetailsComponent } from './pages/details/details.component';
+
 
 
 
@@ -20,6 +22,7 @@ import { StudentsComponent } from './students.component';
     FormComponent,
     TableComponent,
     StudentsComponent,
+    DetailsComponent,
 
   ],
   imports: [
@@ -41,6 +44,7 @@ import { StudentsComponent } from './students.component';
     MatTableModule,
     SharedModule,
     StudentsComponent,
+    DetailsComponent,
   ],
 
   providers: [StudentsService],

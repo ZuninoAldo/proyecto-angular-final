@@ -20,6 +20,7 @@ export class TableCareersComponent implements OnInit {
   careers$: Observable<Career[]>;
   isLoading$: Observable<boolean>;
   error$: Observable<any>;
+  currentUserRole: string;
 
   constructor(private careerService: CareersService,
     private store: Store<RootState>
@@ -27,6 +28,7 @@ export class TableCareersComponent implements OnInit {
     this.careers$ = this.store.select(selectCareers);
     this.isLoading$ = this.store.select(selectIsLoading);
     this.error$ = this.store.select(selectError);
+    this.currentUserRole = 'admin';
   }
 
   ngOnInit(): void {

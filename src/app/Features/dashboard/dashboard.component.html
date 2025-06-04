@@ -4,11 +4,17 @@
         <mat-list role="list">
             <a mat-list-item routerLink="/dashboard/">Inicio</a>
             <a mat-list-item routerLink="/dashboard/students">Estudiantes</a>
-            <a mat-list-item routerLink="/dashboard/careers"
-            *ngIf="(authUser | async)?.role === 'admin'">Carreras</a>
+            <a mat-list-item routerLink="/dashboard/careers">Carreras</a>
             <a mat-list-item routerLink="/dashboard/users"
             *ngIf="(authUser | async)?.role === 'admin'">Usuarios</a>
             <button mat-list-item (click)="logOut()">Cerrar Sesión</button>
+
+            <div class="spacer">Usuario conectado:</div>
+                {{ (authUser | async)?.name }}
+            <div class="spacer"> Rol asignado:
+            </div>
+                {{ (authUser | async)?.role }}
+
         </mat-list>
     </mat-drawer>
 
@@ -18,7 +24,7 @@
                 (click)="drawer.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
-            <span> Academia Virtual </span>
+            <span> DALARAN'S ACADEMY </span>
             <span class="example-spacer"></span>
         </mat-toolbar>
 

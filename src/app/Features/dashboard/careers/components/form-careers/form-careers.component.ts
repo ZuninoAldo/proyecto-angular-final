@@ -49,7 +49,7 @@ export class FormCareersComponent {
       title: this.formGroupCareer.value.title,
       description: this.formGroupCareer.value.description,
     }
-    console.log(career);
+
     if(this.isEdit){
       this.careersService.updateCareer(this.formGroupCareer.value);
     }else {

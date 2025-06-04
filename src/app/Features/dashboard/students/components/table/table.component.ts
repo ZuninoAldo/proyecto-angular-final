@@ -19,10 +19,13 @@ export class TableComponent implements OnInit {
   ];
 
   dataSource: Student[] = [];
+  currentUserRole: string;
 
   constructor(
     private studentsService: StudentsService,
-  ) { }
+  ) { 
+    this.currentUserRole = 'admin';
+  }
   
   ngOnInit(): void {
     this.studentsService.getStudentsObs();

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../Features/dashboard/students/interfaces/students';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
@@ -77,6 +77,18 @@ export class StudentsService {
       error: (error) => {
         console.error('Error al intentar borrar al Alumno:', error);
       },
+    })
+  }
+
+  getById(id: string) {
+    return new Observable<Student>((subscriber) => {
+      const student = this._students.find((student) => student.id === id);
+      if (student) {
+        subscriber.next(student);
+      } else {
+        subscriber.error('Student not found');
+      }
+      subscriber.complete();
     })
   }
 

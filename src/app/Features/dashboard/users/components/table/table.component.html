@@ -32,14 +32,22 @@
                 <mat-icon 
                 aria-hidden="false" 
                 aria-label="Example home icon" 
-                fontIcon="edit"
-                (click)="editUser(element.id)"></mat-icon>
+                fontIcon="visibility"
+                ></mat-icon>
                 &nbsp;
-                <mat-icon 
-                aria-hidden="false" 
-                aria-label="Example home icon" 
-                fontIcon="delete"
-                (click)="deleteUser(element.id)"></mat-icon>
+                <span *ngIf="currentUserRole === 'admin'">
+                    <mat-icon 
+                        aria-hidden="false" 
+                        aria-label="Example home icon" 
+                        fontIcon="edit"
+                        (click)="editUser(element.id)"></mat-icon>
+                    &nbsp;
+                    <mat-icon 
+                        aria-hidden="false" 
+                        aria-label="Example home icon" 
+                        fontIcon="delete"
+                        (click)="deleteUser(element.id)"></mat-icon>
+                </span>
             </td>
         </ng-container>
 

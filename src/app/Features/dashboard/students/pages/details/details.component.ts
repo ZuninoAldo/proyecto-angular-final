@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Student } from '../../interfaces/students';
 
 @Component({
-  selector: 'details-students',
+  selector: 'StudentsDetailsComponent',
   standalone: false,
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'

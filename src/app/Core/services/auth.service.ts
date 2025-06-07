@@ -17,9 +17,33 @@ export class AuthService {
   authUser$ = this._authUser.asObservable();
 
 
-  private TOKEN = "1234"
+  private TOKEN_KEY = "token";
 
-  constructor(private http: HttpClient, private store: Store<RootState>) { }
+  constructor(private http: HttpClient, private store: Store<RootState>) {
+    this.verifyAndSetAuthUser();
+  }
+
+  private verifyAndSetAuthUser(): void {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (token === environment.token) {
+      const storedUser = localStorage.getItem('authUser');
+      if (storedUser) {
+        try {
+          const user: User = JSON.parse(storedUser);
+          this._authUser.next(user);
+          this.store.dispatch(setAuthUser({ payload: user }));
+          
+        } catch (e) {
+          console.error('Error al parsear usuario de localStorage:', e);
+          localStorage.removeItem('authUser');
+          this.logout();
+        }
+      } else {
+      }
+    } else {
+      this.logout();
+    }
+  }
 
   login(email: string, password: string): Observable<boolean> {
     return this.http.get<User[]>(`${environment.apiUrl}/users`).pipe(
@@ -37,7 +61,8 @@ export class AuthService {
       );
 
         this._authUser.next(user);
-        localStorage.setItem('token', this.TOKEN);
+        localStorage.setItem(this.TOKEN_KEY, environment.token);
+        localStorage.setItem('authUser', JSON.stringify(user)); 
         return true;
       }),
       catchError((error) => {
@@ -54,14 +79,15 @@ export class AuthService {
   }
 
   verifyToken(): Observable<boolean> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(this.TOKEN_KEY);
 
-    return of(token === this.TOKEN);
+    return of(token === environment.token);
   }
 
   logout() {
     this._authUser.next(null);
-    localStorage.removeItem('token');
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem('authUser');
     this.store.dispatch(unsetAuthUser());
   }
 }

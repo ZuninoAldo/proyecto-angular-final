@@ -17,12 +17,26 @@ export class UsersService {
     userEdit = new BehaviorSubject<User | null>(null);
     userEdit$ = this.userEdit.asObservable();
 
-    constructor(private http: HttpClient) { }
+    private currentUserRoleSubject = new BehaviorSubject<string | undefined>(undefined);
+    currentUserRole$ = this.currentUserRoleSubject.asObservable();
+
+
+    constructor(private http: HttpClient) {
+        this.setCurrentUserRole('user');
+    }
 
     private _users: User[] = [];
 
     getUsers(): User[] {
         return this._users;
+    }
+
+    setCurrentUserRole(role: string): void {
+        this.currentUserRoleSubject.next(role);
+    }
+
+    getCurrentUserRole(): string | undefined {
+        return this.currentUserRoleSubject.value;
     }
 
     setUpdateUser(id: string) {
@@ -44,7 +58,7 @@ export class UsersService {
                     this.userDataSubject.next(this._users);
                     this.userEdit.next(null);
                 },
-                error: (error) =>{
+                error: (error) => {
                     console.error('Error al actualizar los datos del Usuario: ', error);
                 },
             })

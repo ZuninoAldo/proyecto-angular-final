@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../Features/dashboard/students/interfaces/students';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
@@ -80,16 +80,13 @@ export class StudentsService {
     })
   }
 
-  getById(id: string) {
-    return new Observable<Student>((subscriber) => {
-      const student = this._students.find((student) => student.id === id);
-      if (student) {
-        subscriber.next(student);
-      } else {
-        subscriber.error('Student not found');
-      }
-      subscriber.complete();
-    })
+  getById(id: string): Observable<Student> {
+    return this.http.get<Student>(`${environment.apiUrl}/students/${id}`).pipe(
+      catchError(error => {
+        console.error('Error al obtener estudiante por ID desde el backend:', error);
+        throw error;
+      })
+    );
   }
 
 }

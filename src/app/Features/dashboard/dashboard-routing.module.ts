@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { StudentsComponent } from './students/students.component';
 import { CareersComponent } from './careers/careers.component';
-import { DetailsComponent } from './careers/pages/details/details.component';
+import { DetailsComponent as CareerDetailsComponent } from './careers/pages/details/details.component';
 import { DashboardComponent } from './dashboard.component';
 import { adminGuard } from '../../Core/guards/admin.guard';
 import { UsersComponent } from './users/users.component';
+import { DetailsComponent as StudentDetailsComponent } from './students/pages/details/details.component';
+
 
 const routes: Routes = [
   {
@@ -23,8 +25,8 @@ const routes: Routes = [
         component: StudentsComponent,
       },
       {
-            path: 'student/:id',
-            component: DetailsComponent,
+            path: 'students/:id',
+            component: StudentDetailsComponent,
           },
       {
         path: 'users',
@@ -37,7 +39,7 @@ const routes: Routes = [
       },
       {
         path: 'careers/:title',
-        component: DetailsComponent,
+        component: CareerDetailsComponent,
       },
     ]
   },
